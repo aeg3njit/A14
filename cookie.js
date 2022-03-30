@@ -1,33 +1,45 @@
-function setCookie(cname, cvalue, exdays) {
-  const d = new Date();
-  d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
-  let expires = "expires="+d.toUTCString();
-  document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+// *********FROM https://www.w3schools.com/js/js_cookies.asp*********
+
+// to set the cookie
+
+function setCookie(cookieName, cookievalue, exdays) {
+  const day = new Date();
+  
+  // sets the time
+  day.setTime(day.getTime() + (exdays * 24 * 60 * 60 * 1000));
+  
+  // when the cookie expires 
+  let cookie_expires = "expires="+day.toUTCString();
+  document.cookie = cookieName + "=" + cookievalue + ";" + cookie_expires + ";path=/";
 }
 
-function getCookie(cname) {
-  let name = cname + "=";
-  let ca = document.cookie.split(';');
-  for(let i = 0; i < ca.length; i++) {
-    let c = ca[i];
-    while (c.charAt(0) == ' ') {
-      c = c.substring(1);
+// to get the cookie
+
+function getCookie(cookieName) {
+  let name = cookieName + "=";
+  let splitCookie = document.cookie.split(';');
+  for(let i = 0; i < splitCookie.length; i++) {
+    let ch = splitCookie[i];
+    while (ch.charAt(0) == ' ') {
+      ch = ch.substring(1);
     }
-    if (c.indexOf(name) == 0) {
-      return c.substring(name.length, c.length);
+    if (ch.indexOf(name) == 0) {
+      return ch.substring(name.length, ch.length);
     }
   }
   return "";
 }
 
+// to check the cookie
+
 function checkCookie() {
-  let user = getCookie("username");
-  if (user != "") {
-    alert("Welcome again " + user);
+  let username = getCookie("username");
+  if (username != "") {
+    alert("Welcome back " + username);
   } else {
-    user = prompt("Please enter your name:", "");
-    if (user != "" && user != null) {
-      setCookie("username", user, 365);
+    username = prompt("Enter your username:", "");
+    if (username != "" && username != null) {
+      setCookie("username", username, 365);
     }
   }
 }
