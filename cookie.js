@@ -10,6 +10,7 @@ function setCookie(cookieName, cookievalue, exdays) {
   
   // when the cookie expires 
   let cookie_expires = "expires="+day.toUTCString();
+  // not sure what to do here 
   document.cookie = cookieName + "=" + cookievalue + ";" + cookie_expires + ";path=/";
 }
 
@@ -34,9 +35,11 @@ function getCookie(cookieName) {
 
 function checkCookie() {
   let username = getCookie("username");
+  // if there is a username, greet the user
   if (username != "") {
     alert("Welcome back " + username);
   } else {
+    // if there is no username, pompt the user to enter their username
     username = prompt("Enter your username:", "");
     if (username != "" && username != null) {
       setCookie("username", username, 365);
