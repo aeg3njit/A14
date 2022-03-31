@@ -1,18 +1,52 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang = 'en'>
 <head>
-	<meta charset="utf-8">
-	<title>A14 Cookies Page</title>
-	<script src="cookie.js"></script>
-</head>
-<body>
+	<title>Alisha Gomes A14</title>
 	
-	<h1> A14 Create and Display Cookies </h1>
-
+<script type="text/javascript">
+	// TAKEN FROM W3 SCHOOLS
+	function setCookie(cname, cvalue, exdays) {
+		var d = new Date();
+		d.setTime(d.getTime() + (exdays*24*60*60*1000));
+		var expires = "expires=" + d.toGMTString();
+		document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+	}
+	function getCookie(cname) {
+		var name = cname + "=";
+		var decodedCookie = decodeURIComponent(document.cookie);
+		var ca = decodedCookie.split(';');
+		for(var i = 0; i < ca.length; i++) {
+			var c = ca[i];
+			while (c.charAt(0) == ' ') {
+				c = c.substring(1);
+			}
+			if (c.indexOf(name) == 0) {
+				return c.substring(name.length, c.length);
+			}
+		}
+		return "";
+	}
+	
+	function checkCookie() {
+		var user = getCookie("username");
+		if (user != "") {
+			alert("Welcome again " + user);
+		} else {
+			user = prompt("Hi! whats your name ?", "");
+			if (user != "" && user != null) {
+				setCookie("username", user, 365);
+			}
+		}
+	}
+	
+</script>
+</head>
+	
+<body onload="checkCookie()">
+	<h1> A14 Assignment </h1>
 	<footer>
-    <!--add paragraph with copywrite symbol-->
-		<p>&copy; March 30, 2022 Alisha Gomes </p>
+		<p>&copy; Alisha Gomes, March 31, 2022</p>
 	</footer>
-  
+
 </body>
 </html>
